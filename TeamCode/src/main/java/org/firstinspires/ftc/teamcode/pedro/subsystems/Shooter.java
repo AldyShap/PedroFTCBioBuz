@@ -20,8 +20,8 @@ public class Shooter {
     private static final double TICKS_PER_REV = MOTOR_TICKS_PER_REV * GEAR_RATIO;
 
     // Желаемые обороты ВЫХОДНОГО ВАЛА (для 3:1 разумно ставить 1500-1800 RPM)
-    private double targetRPM = 2500.0;
-    private double targetVel = 1190.3;
+    private double targetRPM = 2700.0;
+    private double targetVel = 1260;
 
     double targetTicksPerSec = (targetRPM * TICKS_PER_REV) / 60.0;
 

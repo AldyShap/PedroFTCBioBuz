@@ -33,9 +33,11 @@ public class BioBuzzRedAuto  extends OpMode {
 
     // Need to change the poses
     private Pose startPose = p.of(57.112, 9.112,90);
-    private Pose parkPose = p.of(9.9, 70.6, 90);
+    private Pose parkPose = p.of(10.67878192534382, 105.95776031434183, 0);
 
-    private Path startToPark = buildPath(startPose, parkPose);
+    private Pose shootPose = p.of(57.7, 31.6, 90);
+
+    private Pose controlPose = p.of(21.486247544204314, 36.362475442043205, 0);
 
     @Override
     public void init() {
@@ -69,15 +71,19 @@ public class BioBuzzRedAuto  extends OpMode {
         telemetry.addData("Is ready to shoot: ", shooter.isReady()? "Yes": "Not yet");
         telemetry.update();
     }
+    private Path StartToShoot() {
+        return line(startPose, parkPose).linear(startPose, parkPose);
+    }
 
-    private Path buildPath(Pose pose1, Pose pose2) {
-        return line(pose1, pose2).linear(pose1, pose2);
+    private Path ShootToPark() {
+        return curve(shootPose, controlPose, parkPose).linear(startPose, parkPose);
     }
 
     private Command AutoRoutine() {
         return sequential(
+                follow(follower, StartToShoot()),
                 Shoot(shooter),
-                follow(follower, startToPark)
+                follow(follower, ShootToPark())
         );
     }
 

@@ -165,7 +165,7 @@ public class BioBuzzTeleOp extends LinearOpMode {
             // --- Единая логика интейка без     конфликтов ---
             if (gamepad2.b) {
                 intake.setPower(-1.0);
-                stopper.setPower(-1.0);
+                stopper.setPower(0);
             } else if (gamepad2.a) {
                 intake.setPower(1.0);
                 stopper.setPower(0.0);

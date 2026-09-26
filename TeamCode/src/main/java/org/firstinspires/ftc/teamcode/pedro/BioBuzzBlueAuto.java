@@ -30,11 +30,13 @@ public class BioBuzzBlueAuto  extends OpMode {
     private Intake intake;
     private final PoseFactory p = PoseFactory.degrees();
 
-    private Pose startPose = p.of(82.40962671905697, 132.54223968565813, 270);
-    private Pose parkPose = p.of(132.44891944990178, 70.91650294695482,  270);
+    private Pose shootPose = p.of(83.816, 109.5, 270);
 
+    private Pose curvePose = p.of(124.05500982318271, 112.5992141453831, 270);
 
-    private Path StartToPark = buildPath(startPose, parkPose);
+    private Pose startPose = p.of(83.816, 131.645, 270);
+    private Pose parkPose = p.of(130.48722986247543, 35.00000000000001,  180);
+
 
 
     @Override
@@ -70,14 +72,19 @@ public class BioBuzzBlueAuto  extends OpMode {
         telemetry.update();
     }
 
-    private Path buildPath(Pose pose1, Pose pose2) {
-        return line(pose1, pose2).linear(pose1, pose2);
+    private Path StartToShoot() {
+        return line(startPose, parkPose).linear(startPose, parkPose);
+    }
+
+    private Path ShootToPark() {
+        return curve(shootPose, curvePose, parkPose).linear(startPose, parkPose);
     }
 
     private Command AutoRoutine() {
         return sequential(
+                follow(follower, StartToShoot()),
                 Shoot(shooter),
-                follow(follower, StartToPark)
+                follow(follower, ShootToPark())
         );
     }
 
