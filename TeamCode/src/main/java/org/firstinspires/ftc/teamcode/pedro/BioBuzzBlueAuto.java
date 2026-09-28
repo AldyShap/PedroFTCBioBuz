@@ -35,7 +35,7 @@ public class BioBuzzBlueAuto  extends OpMode {
     private Pose curvePose = p.of(124.05500982318271, 112.5992141453831, 270);
 
     private Pose startPose = p.of(83.816, 131.645, 270);
-    private Pose parkPose = p.of(130.48722986247543, 35.00000000000001,  180);
+    private Pose parkPose = p.of(130.84675834970528, 35.13850687622792,  180);
 
 
 
@@ -73,11 +73,11 @@ public class BioBuzzBlueAuto  extends OpMode {
     }
 
     private Path StartToShoot() {
-        return line(startPose, parkPose).linear(startPose, parkPose);
+        return line(startPose, shootPose).linear(startPose, shootPose);
     }
 
     private Path ShootToPark() {
-        return curve(shootPose, curvePose, parkPose).linear(startPose, parkPose);
+        return curve(shootPose, curvePose, parkPose).linear(shootPose, parkPose);
     }
 
     private Command AutoRoutine() {

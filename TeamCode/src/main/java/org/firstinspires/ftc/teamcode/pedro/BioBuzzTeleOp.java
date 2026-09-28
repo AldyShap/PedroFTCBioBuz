@@ -46,7 +46,7 @@ public class BioBuzzTeleOp extends LinearOpMode {
     private static final double TICKS_PER_REV = MOTOR_TICKS_PER_REV * GEAR_RATIO;
 
     // Желаемые обороты ВЫХОДНОГО ВАЛА (для 3:1 разумно ставить 1500-1800 RPM)
-    private double targetRPM = 2800.0;
+    private double targetRPM = 2700.0;
     private boolean isShooting = false;
     private boolean previousXState = false;
 
@@ -156,7 +156,7 @@ public class BioBuzzTeleOp extends LinearOpMode {
             DrivePowers powers = ManualDrive.fieldCentric(
                     -gamepad1.left_stick_y,
                     -gamepad1.left_stick_x,
-                    gamepad1.right_stick_x,
+                    -gamepad1.right_stick_x,
                     follower.pose().heading()
             );
             follower.manual(powers);

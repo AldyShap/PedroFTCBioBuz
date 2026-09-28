@@ -6,14 +6,14 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import com.pedropathing.follower.Follower;
-import org.firstinspires.ftc.teamcode.pedro.Constants;
+//import org.firstinspires.ftc.teamcode.pedro.Constants;
 import org.firstinspires.ftc.teamcode.pedro.subsystems.Shooter;
 import org.firstinspires.ftc.teamcode.pedro.subsystems.Intake;
 
 import com.pedropathing.ivy.Scheduler;
 import static com.pedropathing.ivy.Scheduler.schedule;
 import static com.pedropathing.ivy.commands.Commands.waitMs;
-import static com.pedropathing.ivy.groups.Groups.parallel;
+//import static com.pedropathing.ivy.groups.Groups.parallel;
 import static com.pedropathing.ivy.pedro.PedroCommands.follow;
 import static com.pedropathing.ivy.groups.Groups.sequential;
 import com.pedropathing.ivy.Command;
@@ -31,7 +31,7 @@ public class BioBuzzRedAuto  extends OpMode {
     private final PoseFactory p = PoseFactory.degrees();
 
 
-    // Need to change the poses
+    // "final" might make this work
     private Pose startPose = p.of(57.112, 9.112,90);
     private Pose parkPose = p.of(10.67878192534382, 105.95776031434183, 0);
 
@@ -72,11 +72,11 @@ public class BioBuzzRedAuto  extends OpMode {
         telemetry.update();
     }
     private Path StartToShoot() {
-        return line(startPose, parkPose).linear(startPose, parkPose);
+        return line(startPose, shootPose).linear(startPose, shootPose);
     }
 
     private Path ShootToPark() {
-        return curve(shootPose, controlPose, parkPose).linear(startPose, parkPose);
+        return curve(shootPose, controlPose, parkPose).linear(shootPose, parkPose);
     }
 
     private Command AutoRoutine() {
